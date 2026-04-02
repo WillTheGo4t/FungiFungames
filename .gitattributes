@@ -1,7 +1,157 @@
+# ==========================================
+
+# Git LFS (Large File Storage) Rules
+
+# ==========================================
+
+
+
+# Unreal Core Assets
+
 *.uasset filter=lfs diff=lfs merge=lfs -text
+
 *.umap filter=lfs diff=lfs merge=lfs -text
+
+
+
+# 3D Models & Animation
+
 *.fbx filter=lfs diff=lfs merge=lfs -text
+
 *.obj filter=lfs diff=lfs merge=lfs -text
+
+*.abc filter=lfs diff=lfs merge=lfs -text
+
+*.blend filter=lfs diff=lfs merge=lfs -text
+
+*.ma filter=lfs diff=lfs merge=lfs -text
+
+*.mb filter=lfs diff=lfs merge=lfs -text
+
+
+
+# Textures, Images & Materials
+
 *.png filter=lfs diff=lfs merge=lfs -text
+
 *.jpg filter=lfs diff=lfs merge=lfs -text
+
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+
+*.tga filter=lfs diff=lfs merge=lfs -text
+
+*.exr filter=lfs diff=lfs merge=lfs -text
+
+*.psd filter=lfs diff=lfs merge=lfs -text
+
+*.tif filter=lfs diff=lfs merge=lfs -text
+
+*.tiff filter=lfs diff=lfs merge=lfs -text
+
+*.hdr filter=lfs diff=lfs merge=lfs -text
+
+*.sbsar filter=lfs diff=lfs merge=lfs -text
+
+
+
+# Audio
+
 *.wav filter=lfs diff=lfs merge=lfs -text
+
+*.cue filter=lfs diff=lfs merge=lfs -text
+
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+
+*.ogg filter=lfs diff=lfs merge=lfs -text
+
+
+
+# Media / Video
+
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+
+*.mov filter=lfs diff=lfs merge=lfs -text
+
+*.wmv filter=lfs diff=lfs merge=lfs -text
+
+
+
+# Fonts
+
+*.ttf filter=lfs diff=lfs merge=lfs -text
+
+*.otf filter=lfs diff=lfs merge=lfs -text
+
+
+
+# Unreal Specific Binary & Packaged Files (Neu hinzugefügt)
+
+*.locres filter=lfs diff=lfs merge=lfs -text
+
+*.pak filter=lfs diff=lfs merge=lfs -text
+
+
+
+# Compiled Binaries & Plugins (Neu hinzugefügt)
+
+*.dll filter=lfs diff=lfs merge=lfs -text
+
+*.lib filter=lfs diff=lfs merge=lfs -text
+
+*.pdb filter=lfs diff=lfs merge=lfs -text
+
+*.a filter=lfs diff=lfs merge=lfs -text
+
+*.so filter=lfs diff=lfs merge=lfs -text
+
+*.dylib filter=lfs diff=lfs merge=lfs -text
+
+*.exe filter=lfs diff=lfs merge=lfs -text
+
+
+
+# ==========================================
+
+# Line Endings Rules (Text Files)
+
+# ==========================================
+
+
+
+# Set default behavior to automatically normalize line endings
+
+* text=auto
+
+
+
+# Code and configuration files should strictly use LF in the repo
+
+*.cpp text
+
+*.h text
+
+*.cs text
+
+*.inl text
+
+*.ini text
+
+*.json text
+
+*.txt text
+
+
+
+# Unreal Specific Text Files (Neu hinzugefügt)
+
+*.uproject text
+
+*.uplugin text
+
+
+
+# Scripts - Force Specific Line Endings (Neu hinzugefügt)
+
+*.bat text eol=crlf
+
+*.sh text eol=lf
