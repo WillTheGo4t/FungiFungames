@@ -42,7 +42,7 @@ public:
 	static bool KeyExistsInJson(const FString& FilePath, const FString& Key);
 
 
-	UFUNCTION(BlueprintPure, Category = "Balancing")
+	UFUNCTION(BlueprintPure, Category = "MISC")
 	static FString GetBalancingFilePath();
 
 	UFUNCTION(BlueprintCallable, Category = "MISC")
