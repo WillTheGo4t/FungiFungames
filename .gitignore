@@ -30,6 +30,9 @@ Plugins/*/Saved/
 *.xcworkspace
 *.kdev4
 
+# Visual Studio Configuration
+.vsconfig
+
 # ==========================================
 # OS Generated Files
 # ==========================================
