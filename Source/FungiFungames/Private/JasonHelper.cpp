@@ -142,5 +142,9 @@ bool UJasonHelper::SortJasonKeysAlphabetically(const FString& FilePath)
 
 FString UJasonHelper::GetBalancingFilePath()
 {
-    return FPaths::ProjectSavedDir() + TEXT("Balancing/BalancingData.json");
+    return FPaths::Combine(
+        FPaths::ProjectContentDir(),
+        TEXT("Balancing"),
+        TEXT("BalancingData.json")
+    );
 }
