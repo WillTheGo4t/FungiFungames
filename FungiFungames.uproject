@@ -33,6 +33,17 @@
 		{
 			"Name": "AIAssistant",
 			"Enabled": true
+		},
+		{
+			"Name": "OnlineServicesEOS",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineServicesEOSGS",
+			"Enabled": true
 		}
+	],
+	"AdditionalPluginDirectories": [
+		"Plugin"
 	]
 }
