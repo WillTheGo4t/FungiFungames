@@ -40,10 +40,6 @@
 		{
 			"Name": "OnlineServicesEOSGS",
 			"Enabled": true
-		},
-		{
-			"Name": "SteamSockets",
-			"Enabled": true
 		}
 	],
 	"AdditionalPluginDirectories": [
