@@ -7,7 +7,10 @@
 		{
 			"Name": "FungiFungames",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
@@ -27,12 +30,23 @@
 			"Enabled": true
 		},
 		{
-			"Name": "OnlineSubsystemEOS",
+			"Name": "AIAssistant",
 			"Enabled": true
 		},
 		{
-			"Name": "AIAssistant",
+			"Name": "OnlineServicesEOS",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineServicesEOSGS",
+			"Enabled": true
+		},
+		{
+			"Name": "SteamSockets",
 			"Enabled": true
 		}
+	],
+	"AdditionalPluginDirectories": [
+		"Plugin"
 	]
 }
