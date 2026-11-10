@@ -10,7 +10,16 @@
 #include "Sound/SoundClass.h"
 #include "AudioConfigRegistry.generated.h"
 
-// 1. Enum
+
+
+UENUM(BlueprintType)
+enum class ESoundClassEnum : uint8
+{
+    UI UMETA(DisplayName = "UI"),
+    SFX UMETA(DisplayName = "SFX"),
+    Music UMETA(DisplayName = "Music")
+};
+
 UENUM(BlueprintType)
 enum class EAudioPlaybackType : uint8
 {
@@ -19,7 +28,6 @@ enum class EAudioPlaybackType : uint8
     SpawnAttached UMETA(DisplayName = "Spawn Attached")
 };
 
-// 2. Das Wave-Entry Struct
 USTRUCT(BlueprintType)
 struct FGameSoundWaveEntry
 {
@@ -69,14 +77,14 @@ struct FGameSoundMusicSettings
     bool bVirtualizeWhenSilent = true;
 };
 
-// 4. Haupt-Struct
 USTRUCT(BlueprintType)
 struct FGameSoundData
 {
     GENERATED_BODY()
 
+    // Nutzt jetzt das Enum statt der festen Klasse!
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
-    USoundClass* SoundClass = nullptr;
+    ESoundClassEnum Class = ESoundClassEnum::SFX;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     TArray<FGameSoundWaveEntry> SoundWaves;
@@ -96,8 +104,9 @@ struct FGameSoundData
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     EAudioPlaybackType PlaybackType = EAudioPlaybackType::Play2D;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Network")
-    bool bReplicate = false;
+    // Der Bool für den Levelwechsel
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
+    bool bPersistAcrossLevel = false;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spacialization", meta = (EditCondition = "PlaybackType != EAudioPlaybackType::Play2D"))
     USoundAttenuation* Attenuation = nullptr;
@@ -105,7 +114,6 @@ struct FGameSoundData
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Limits")
     USoundConcurrency* Concurrency = nullptr;
 
-    // Nested Music Settings as a collapsible category
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Advanced Music Settings")
     FGameSoundMusicSettings MusicSettings;
 };

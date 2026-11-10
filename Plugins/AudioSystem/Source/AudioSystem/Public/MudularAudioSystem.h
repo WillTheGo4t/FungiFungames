@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Subsystems/GameInstanceSubsystem.h"
+#include "Subsystems/WorldSubsystem.h"
 #include "MudularAudioSystem.generated.h"
 
 /**
  * 
  */
 UCLASS(Blueprintable, BlueprintType)
-class AUDIOSYSTEM_API UMudularAudioSystem : public UGameInstanceSubsystem
+class AUDIOSYSTEM_API UMudularAudioSystem : public UWorldSubsystem
 {
 	GENERATED_BODY()
 	
