@@ -93,10 +93,10 @@ struct FGameSoundData
     float Volume = 1.0f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
-    float PitchMin = 1.0f;
+    float PitchMin = 0.8f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
-    float PitchMax = 1.0f;
+    float PitchMax = 1.2f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     bool bLooping = false;
