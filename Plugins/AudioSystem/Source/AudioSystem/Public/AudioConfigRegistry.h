@@ -37,17 +37,21 @@ struct FGameSoundWaveEntry
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TSoftObjectPtr<USoundWave> Wave;
 
-    // Individual volume adjustment for this specific wave.
+    // Volume multiplier for this specific sound. 
+    // Multiplies with the base Volume of the whole Tag.
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     float VolumeMultiplier = 1.0f;
 
-    // Individual pitch adjustment for this specific wave.
+    // Pitch multiplier for this specific sound
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     float PitchMultiplier = 1.0f;
 
-    // Automatically applied to the actual file when changed in the editor.
+    // Defines how this sound is loaded into memory.
+    // Inherited (Default): Uses project settings.
+    // RetainOnLoad: Keeps it in RAM to prevent stuttering (Good for UI/SFX).
+    // PrimeOnLoad: Streams it when needed (Good for long music tracks).
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    ESoundWaveLoadingBehavior LoadingBehavior = ESoundWaveLoadingBehavior::RetainOnLoad;
+    ESoundWaveLoadingBehavior LoadingBehavior = ESoundWaveLoadingBehavior::Inherited;
 };
 
 // 3. Nested Struct: Music Settings
@@ -82,43 +86,57 @@ struct FGameSoundData
 {
     GENERATED_BODY()
 
-    // Nutzt jetzt das Enum statt der festen Klasse!
+    // The category of this sound (e.g., UI, SFX, Music).
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     ESoundClassEnum Class = ESoundClassEnum::SFX;
 
+    // List of sound variations. One will be picked randomly when played.
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     TArray<FGameSoundWaveEntry> SoundWaves;
 
+    // Base volume for the entire Tag.
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     float Volume = 1.0f;
 
+    // Minimum pitch range applied randomly when spawning the sound.
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     float PitchMin = 0.8f;
 
+    // Maximum pitch range applied randomly when spawning the sound.
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     float PitchMax = 1.2f;
 
+    // If true, the sound repeats continuously until stopped.
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     bool bLooping = false;
 
+    // Defines how this sound is loaded into memory.
+    // Inherited (Default): Uses project settings.
+    // RetainOnLoad: For short, frequently repeating sounds like footsteps or UI clicks.
+    // PrimeOnLoad: For background music or ambiance that plays shortly after loading.
+    // LoadOnDemand: For rare or very long audio files to save memory.
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     EAudioPlaybackType PlaybackType = EAudioPlaybackType::Play2D;
 
-    // Der Bool für den Levelwechsel
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
+    // If true, the sound continues playing during level transitions. (Only for 2D Sounds!)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio", meta = (EditCondition = "PlaybackType == EAudioPlaybackType::Play2D"))
     bool bPersistAcrossLevel = false;
 
+    // Defines how the sound volume drops off over distance.
+    // Only used for 3D sounds (At Location / Attached).
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spacialization", meta = (EditCondition = "PlaybackType != EAudioPlaybackType::Play2D"))
     USoundAttenuation* Attenuation = nullptr;
 
+    // Defines rules for how many instances of this sound can play simultaneously.
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Limits")
     USoundConcurrency* Concurrency = nullptr;
 
+    // Advanced settings for fading and exclusive playback.
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Advanced Music Settings")
     FGameSoundMusicSettings MusicSettings;
 };
 
-// 5. Das Data Asset selbst
+
 UCLASS(BlueprintType)
 class AUDIOSYSTEM_API UAudioConfigRegistry : public UDataAsset
 {
