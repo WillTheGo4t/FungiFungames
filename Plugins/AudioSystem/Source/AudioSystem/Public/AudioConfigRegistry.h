@@ -128,24 +128,5 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Registry")
     TMap<FGameplayTag, FGameSoundData> AudioRegistry;
 
-#if WITH_EDITORONLY_DATA
-    // 6. Preview Funktion: Welchen Tag wollen wir gerade testen?
-    UPROPERTY(EditAnywhere, Transient, Category = "Preview Tools")
-    FGameplayTag TagToPreview;
-
-    UPROPERTY(Transient)
-    UAudioComponent* PreviewAudioComponent;
-#endif
-
-#if WITH_EDITOR
-    // Diese Funktionen zaubern dir die Buttons in den Editor!
-    UFUNCTION(CallInEditor, Category = "Preview Tools")
-    void PlayPreview();
-
-    UFUNCTION(CallInEditor, Category = "Preview Tools")
-    void StopPreview();
-
-    // Diese Engine-Funktion fängt jede Änderung im Data Asset ab
     virtual void PostEditChangeChainProperty(struct FPropertyChangedChainEvent& PropertyChangedEvent) override;
-#endif
 };

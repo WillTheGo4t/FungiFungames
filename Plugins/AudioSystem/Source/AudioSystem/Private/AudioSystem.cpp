@@ -11,10 +11,14 @@ void FAudioSystemModule::StartupModule()
 {
 #if WITH_EDITOR
     FPropertyEditorModule& PropertyModule = FModuleManager::LoadModuleChecked<FPropertyEditorModule>("PropertyEditor");
-
     PropertyModule.RegisterCustomClassLayout(
-        "AudioConfigRegistry", 
+        "AudioConfigRegistry",
         FOnGetDetailCustomizationInstance::CreateStatic(&FAudioConfigRegistryCustomization::MakeInstance)
+    );
+
+    PropertyModule.RegisterCustomPropertyTypeLayout(
+        "GameSoundData",
+        FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FGameSoundDataCustomization::MakeInstance)
     );
 #endif
 }
@@ -22,11 +26,11 @@ void FAudioSystemModule::StartupModule()
 void FAudioSystemModule::ShutdownModule()
 {
 #if WITH_EDITOR
-
     if (FModuleManager::Get().IsModuleLoaded("PropertyEditor"))
     {
         FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
         PropertyModule.UnregisterCustomClassLayout("AudioConfigRegistry");
+        PropertyModule.UnregisterCustomPropertyTypeLayout("GameSoundData");
     }
 #endif
 }

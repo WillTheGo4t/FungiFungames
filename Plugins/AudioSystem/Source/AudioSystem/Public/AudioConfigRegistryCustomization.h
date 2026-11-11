@@ -2,14 +2,25 @@
 
 #include "CoreMinimal.h"
 #include "IDetailCustomization.h"
+#include "IPropertyTypeCustomization.h"
+#include "Input/Reply.h" 
 
-// Diese Klasse überschreibt das Standard-UI deines Data Assets
 class FAudioConfigRegistryCustomization : public IDetailCustomization
 {
 public:
-    // Nötig für die Registrierung in der Engine
     static TSharedRef<IDetailCustomization> MakeInstance();
-
-    // Die Hauptfunktion, in der wir später die UI-Elemente (Buttons, Sortierung) zeichnen
     virtual void CustomizeDetails(IDetailLayoutBuilder& DetailBuilder) override;
+private:
+    FReply OnStopAllClicked();
+};
+
+class FGameSoundDataCustomization : public IPropertyTypeCustomization
+{
+public:
+    static TSharedRef<IPropertyTypeCustomization> MakeInstance();
+    virtual void CustomizeHeader(TSharedRef<IPropertyHandle> PropertyHandle, class FDetailWidgetRow& HeaderRow, class IPropertyTypeCustomizationUtils& CustomizationUtils) override;
+    virtual void CustomizeChildren(TSharedRef<IPropertyHandle> PropertyHandle, class IDetailChildrenBuilder& ChildBuilder, class IPropertyTypeCustomizationUtils& CustomizationUtils) override;
+private:
+    FReply OnPlayClicked(TSharedRef<IPropertyHandle> StructPropertyHandle);
+    FReply OnStopClicked(TSharedRef<IPropertyHandle> StructPropertyHandle);
 };
