@@ -127,6 +127,7 @@ class AUDIOSYSTEM_API UAudioConfigRegistry : public UDataAsset
 public:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Registry")
     TMap<FGameplayTag, FGameSoundData> AudioRegistry;
-
+#if WITH_EDITOR
     virtual void PostEditChangeChainProperty(struct FPropertyChangedChainEvent& PropertyChangedEvent) override;
+#endif
 };

@@ -32,15 +32,19 @@ public class AudioSystem : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"UnrealEd",
-                "PropertyEditor"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
 
         if (Target.bBuildEditor)
         {
-            PrivateDependencyModuleNames.AddRange(new string[] { "UnrealEd" });
+            PrivateDependencyModuleNames.AddRange(
+                new string[]
+                {
+                "UnrealEd", 
+                "PropertyEditor"  
+                }
+            );
         }
 
         DynamicallyLoadedModuleNames.AddRange(

@@ -1,5 +1,6 @@
 #pragma once
 
+#if WITH_EDITOR
 #include "CoreMinimal.h"
 #include "IDetailCustomization.h"
 #include "IPropertyTypeCustomization.h"
@@ -24,3 +25,4 @@ private:
     FReply OnPlayClicked(TSharedRef<IPropertyHandle> StructPropertyHandle);
     FReply OnStopClicked(TSharedRef<IPropertyHandle> StructPropertyHandle);
 };
+#endif

@@ -1,8 +1,11 @@
 #include "AudioConfigRegistry.h"
 #include "Kismet/GameplayStatics.h"
-#include "Editor.h"
 #include "Sound/SoundWave.h"
 #include "Components/AudioComponent.h"
+
+#if WITH_EDITOR
+#include "Editor.h"
+#endif
 
 #if WITH_EDITOR
 void UAudioConfigRegistry::PostEditChangeChainProperty(FPropertyChangedChainEvent& PropertyChangedEvent)

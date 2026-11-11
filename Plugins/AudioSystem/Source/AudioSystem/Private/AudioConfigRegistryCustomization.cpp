@@ -1,4 +1,6 @@
 #include "AudioConfigRegistryCustomization.h"
+
+#if WITH_EDITOR
 #include "DetailLayoutBuilder.h"
 #include "DetailCategoryBuilder.h"
 #include "DetailWidgetRow.h"
@@ -220,3 +222,5 @@ FReply FGameSoundDataCustomization::OnStopClicked(TSharedRef<IPropertyHandle> St
     }
     return FReply::Handled();
 }
+
+#endif
