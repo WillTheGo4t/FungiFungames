@@ -48,8 +48,9 @@ struct FGameSoundWaveEntry
 
     // Defines how this sound is loaded into memory.
     // Inherited (Default): Uses project settings.
-    // RetainOnLoad: Keeps it in RAM to prevent stuttering (Good for UI/SFX).
-    // PrimeOnLoad: Streams it when needed (Good for long music tracks).
+    // RetainOnLoad: For short, frequently repeating sounds like footsteps or UI clicks.
+    // PrimeOnLoad: For background music or ambiance that plays shortly after loading.
+    // LoadOnDemand: For rare or very long audio files to save memory.
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     ESoundWaveLoadingBehavior LoadingBehavior = ESoundWaveLoadingBehavior::Inherited;
 };
@@ -110,11 +111,7 @@ struct FGameSoundData
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     bool bLooping = false;
 
-    // Defines how this sound is loaded into memory.
-    // Inherited (Default): Uses project settings.
-    // RetainOnLoad: For short, frequently repeating sounds like footsteps or UI clicks.
-    // PrimeOnLoad: For background music or ambiance that plays shortly after loading.
-    // LoadOnDemand: For rare or very long audio files to save memory.
+    // Defines the audio Type
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
     EAudioPlaybackType PlaybackType = EAudioPlaybackType::Play2D;
 
